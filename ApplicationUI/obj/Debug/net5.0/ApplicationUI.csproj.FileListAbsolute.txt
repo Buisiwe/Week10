@@ -1,0 +1,12 @@
+C:\Users\buisi\OneDrive\Documents\Week10Task\ApplicationUI\obj\Debug\net5.0\ApplicationUI.csproj.AssemblyReference.cache
+C:\Users\buisi\OneDrive\Documents\Week10Task\ApplicationUI\obj\Debug\net5.0\ApplicationUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\buisi\OneDrive\Documents\Week10Task\ApplicationUI\obj\Debug\net5.0\ApplicationUI.AssemblyInfoInputs.cache
+C:\Users\buisi\OneDrive\Documents\Week10Task\ApplicationUI\obj\Debug\net5.0\ApplicationUI.AssemblyInfo.cs
+C:\Users\buisi\OneDrive\Documents\Week10Task\ApplicationUI\obj\Debug\net5.0\ApplicationUI.csproj.CoreCompileInputs.cache
+C:\Users\buisi\OneDrive\Documents\Week10Task\ApplicationUI\bin\Debug\net5.0\ApplicationUI.deps.json
+C:\Users\buisi\OneDrive\Documents\Week10Task\ApplicationUI\bin\Debug\net5.0\ApplicationUI.dll
+C:\Users\buisi\OneDrive\Documents\Week10Task\ApplicationUI\bin\Debug\net5.0\ref\ApplicationUI.dll
+C:\Users\buisi\OneDrive\Documents\Week10Task\ApplicationUI\bin\Debug\net5.0\ApplicationUI.pdb
+C:\Users\buisi\OneDrive\Documents\Week10Task\ApplicationUI\obj\Debug\net5.0\ApplicationUI.dll
+C:\Users\buisi\OneDrive\Documents\Week10Task\ApplicationUI\obj\Debug\net5.0\ref\ApplicationUI.dll
+C:\Users\buisi\OneDrive\Documents\Week10Task\ApplicationUI\obj\Debug\net5.0\ApplicationUI.pdb
