@@ -25,8 +25,6 @@ namespace ApplicationUI
             Console.WriteLine("Please enter your email address:   ");
             email = Console.ReadLine();
             IsValidEmail(email);
-           // isEmailValid();
-            //Console.ReadLine();
             Console.WriteLine("Please enter your favourite dish:   ");
             food = Console.ReadLine();
             userdetail.Add(name);
@@ -35,93 +33,58 @@ namespace ApplicationUI
             userdetail.Add(food);
             Console.ReadKey();
             string Something = string.Join("       |      ", userdetail);
-            names.enqueue(Something);
+            names.Enqueue(Something);
             FileManagement.UserFile(Something);
             Console.Clear();
+            System.Console.WriteLine(name + "  " + surname + "  " + "is added on the queue");
         }
-        public static bool IsValidEmail(string email)
+        public static bool IsValidEmail(string newEmail)
         {
-            if (string.IsNullOrWhiteSpace(email))
-                return false;
-
-            try
-            {
-                // Normalize the domain
-                email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
-                                      RegexOptions.None, TimeSpan.FromMilliseconds(200));
-
-                // Examines the domain part of the email and normalizes it.
-                string DomainMapper(Match match)
+            try {
+                if (!Regex.IsMatch(email, @"^[^@\s\.]+@[^@\s]+\.[^@\s]+$"))
                 {
-                    // Use IdnMapping class to convert Unicode domain names.
-                    var idn = new IdnMapping();
-
-                    // Pull out and process domain name (throws ArgumentException on invalid)
-                    string domainName = idn.GetAscii(match.Groups[2].Value);
-
-                    return match.Groups[1].Value + domainName;
+                    Console.WriteLine("invalid email format. Enter something like: name@domain.com");
+                    Console.Clear();
+                    Console.WriteLine("Please re-enter valid email: ");
+                    newEmail = Console.ReadLine();
+                    email = newEmail;
+                    return false;
                 }
+                
             }
-            catch (RegexMatchTimeoutException)
+            catch(Exception e)
             {
-                System.Console.WriteLine("Password invalid");
-                return true;
+                Console.WriteLine(e.Message);
+                Console.Clear();
             }
-            catch (ArgumentException)
-            {
-                System.Console.WriteLine("Password invalid");
-                return true;
-            }
-
-            try
-            {
-                return Regex.IsMatch(email,
-                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
-                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
-            }
-            catch (RegexMatchTimeoutException)
-            {
-                System.Console.WriteLine("Password invalid");
-                return false;
-            }
+        
+            return true;
         }
 
 
         public static void RemoveUser()
         {
+            Queue names = new Queue();
             Console.ForegroundColor = ConsoleColor.Green;
             System.Console.WriteLine("---------------------------------------------------------------------");
-            //Console.WriteLine("The elements in the queue are:" + names.Count());
-            //names.dequeue();//Method dequeue remove the first element in a queue
-            //showing the elements in a queue after removing one element from the queue
-            //looping in list of names in a Queue 
-            //foreach (string name in Queue. names)
-            // {
-                   // Console.WriteLine(names);
-            // }
-            Console.WriteLine("After removal the elements in the queue are:");
+            UserList.RemoveLines(1, @"c:UsersFile.txt");
+            names.Dequeue();//Method dequeue remove the first element in a queue
+            Console.WriteLine("You have removed first user from the queue");
         }
         public static void DisplayUsers()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             System.Console.WriteLine("---------------------------------------------------------------------");
-            //Console.WriteLine("The elements in the queue are:" + names.Count());
-            //showing the elements in a queue
             Console.WriteLine("The elements in the queue are: ");
+            FileManagement.ReaderFileUser();//calling ReaderFileUser method from FileManagement class to display users from the text file
         }
-
+        
 
         public static string SaveUser(string key)
         {
             //Instance of Queue and add items by calling Enqueue method
              Queue names = new Queue();
-
-            //Method Enqueue adds the following users to the queue
-            names.enqueue("Sarah" + "Marshall" + "Sarah@user.com" + "Mohodu");
-            names.enqueue("Anna" + "Skhu" + "Anna@user.com" + "Skopo");
-            
-            
-            names.enqueue(key);
+            names.Enqueue(key);
             return key;
         }
 

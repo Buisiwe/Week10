@@ -4,6 +4,7 @@ using ApplicationUI;
 using UserApplication;
 using System.Collections.Generic;
 
+
 namespace UserApplication
 {
     class Program
@@ -19,7 +20,8 @@ namespace UserApplication
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             System.Console.WriteLine("---------------------------------------------------------------------");
-
+            
+            //writer.Flush();
             //Call Display method to show options menu to choose from
             UserInterface.Display();
             System.Console.WriteLine("---------------------------------------------------------------------");

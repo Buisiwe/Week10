@@ -1,26 +1,31 @@
 using System.IO;
 using System;
 using System.Text;
+using System.Text.RegularExpressions;
+//using Windows.Storage.Streams;
+
 namespace ApplicationUI
 {
     public static class FileManagement
     {
         public static void UserFile(string key)
         {
+           
             //Writing elements to the Users text file
             try
             {
-                   
-                //Pass the filepath and filename to the StreamWriter Constructor
-                StreamWriter sw = new StreamWriter("C:\\Users\\buisi\\OneDrive\\Documents\\Week10Task\\Users.txt");
-                //Write a line of text
-                sw.WriteLine(key);
-                //sw.Flush();
-                //Write a second line of text
-                //sw.WriteLine("From the StreamWriter class");
-                //Close the file
-                //sw.Close();
-                sw.Dispose();
+                
+                using(StreamWriter writer = new StreamWriter(@"c:UsersFile.txt", true))
+                {
+                    
+                    writer.WriteLine(key);
+                    string text = File.ReadAllText(@"c:UsersFile.txt");
+                    string result = Regex.Replace(text, @"(^\p{Zs}*\r\n){2,}", "\r\n", RegexOptions.Multiline);
+                    File.WriteAllText(@"c:UsersFile.txt", result);
+                    writer.Close();
+                    writer.Dispose();
+                }
+                
             }
             catch (Exception e)
             {
@@ -41,13 +46,13 @@ namespace ApplicationUI
             
             try
             {
-                using var fs = new FileStream("C:\\Users\\buisi\\OneDrive\\Documents\\Week10Task\\Users.txt", FileMode.Open, FileAccess.Read);
+                using var fs = new FileStream(@"c:UsersFile.txt", FileMode.Open, FileAccess.Read);
                 using var sr = new StreamReader(fs, Encoding.UTF8);
                 String line = String.Empty;
                 //string content = await sr.ReadToEndAsync();
                 //Console.WriteLine(content);
                 //Pass the file path and file name to the StreamReader constructor
-                //StreamReader sr = new StreamReader("C:\\Users\\buisi\\OneDrive\\Documents\\Week10Task\\Users.txt");
+                //StreamReader sr = new StreamReader(@"c:UsersFile.txt");
                 //Read the first line of text
                 line = sr.ReadLine();
                 //Continue to read until you reach end of file
@@ -58,7 +63,7 @@ namespace ApplicationUI
                     Console.WriteLine(line);
                     //Read the next line
                     line = sr.ReadLine();
-                    Console.WriteLine("This is the information from a text file.");
+                    
 
                 }
 
@@ -81,5 +86,7 @@ namespace ApplicationUI
         //{
             //var dp = await f
         //}
+
+       
     }
 }

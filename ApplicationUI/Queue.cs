@@ -1,110 +1,74 @@
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ApplicationUI
 {
-    // A linked list (LL) node to 
-    // store a queue entry 
-
-    class QNode
+    // A linked list (LL) node to and store a queue entry 
+    class Queue
     {
+        private readonly int maxsize = 10;
+        private string[] store;
+        private int head = 0;
+        private int tail = 0;
+        private int numItems;
 
-        public string key;
-
-        public QNode next;
-
-        // constructor to create a new linked list node 
-
-        public QNode(string key)
-
+        public Queue()
         {
-
-            this.key = key;
-
-            this.next = null;
-
+            store = new string[maxsize];
         }
-    }
-    //Queue is a generic class and T is a parameter type
-    public class Queue
-    {
-        QNode front, rear; 
 
-  
-
-    public Queue() 
-
-    { 
-
-        this.front = this.rear = null; 
-
-    } 
-        //Create Enqueue method that doesn't return anything and take one parameter of type T.
-        public void enqueue(string key)
-
+        public Queue(int size)
         {
-            // Create a new LL node 
+            maxsize = size;
+            store = new string[maxsize];
+        }
 
-            QNode temp = new QNode(key);
-
-            // If queue is empty, then new 
-
-            // node is front and rear both 
-
-            if (this.rear == null)
+        public void Enqueue(string value)
+        {
+            numItems++;
+            store[tail] = value;
+            if (++tail == maxsize)
             {
+                tail = 0;
+            }
+        }
 
-                this.front = this.rear = temp;
-
-                return;
-
+        public string Dequeue()
+        {
+            string headItem;
+            numItems--;
+            headItem = store[head];
+            if (++head == maxsize)
+            {
+                head = 0;
             }
 
-
-
-            // Add the new node at the 
-
-            // end of queue and change rear 
-
-            this.rear.next = temp;
-
-            this.rear = temp;
+            return headItem;
 
         }
 
-
-
-        // Method to remove an key from queue. 
-
-        public void dequeue()
-
+        public bool IsEmpty()
         {
-
-            // If queue is empty, return NULL. 
-
-            if (this.front == null)
-
-                return;
-
-            // Store previous front and 
-
-            // move front one node ahead 
-
-            QNode temp = this.front;
-
-            this.front = this.front.next;
-
-
-
-            // If front becomes NULL, 
-
-            // then change rear also as NULL 
-
-            if (this.front == null)
-
-                this.rear = null;
-
+            return tail == 0; //returns the boolean result of the comparison between head and 0
         }
+
+        public bool IsFull()
+        {
+            return tail == maxsize;
+        }
+        public int CountQueue() //counts the number of items inside the queue
+        {
+            return tail - head;
+        }
+
+        public int Tail //property
+        {
+            set { this.tail = value; }
+            get { return tail; }
+        }
+
     }
 }

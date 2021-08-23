@@ -11,13 +11,14 @@ namespace UserApplication
 
         public static void Display()
         {
-            //Queue<string> names = new Queue<string>();
+           
             bool userContinue = true;
             while (userContinue) 
             {
                 System.Console.WriteLine("---------------------------------------------------------------------");
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine("Welcome to queue app.");
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine("Welcome to Buisiwe's Queue App.");
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Enter: ");
                 Console.WriteLine("1 to Add User to the Queue");
                 Console.WriteLine("2 to Remove User from the Queue");
@@ -44,66 +45,58 @@ namespace UserApplication
                             Console.ReadKey();
                             Console.Clear();
                         }
+                        Console.WriteLine("Information of a user added successfully!");
                         break;
                 case "2":
-                    UserInfo.DisplayUsers();
+                    try{
+                            UserInfo.RemoveUser();
+                       }
+                    catch (ArithmeticException ex) //Catches all errors relating to arithmetic operations
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                    catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                         break;
                 case "3":
-                    FileManagement.ReaderFileUser();
+                    try {
+                            UserInfo.DisplayUsers();
+                        }
+                    catch (ArithmeticException ex) //Catches all errors relating to arithmetic operations
+                        {
+
+                            Console.WriteLine(ex.Message);
+                        }
+                    catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                         break;
                 case "0":
-                    userContinue = false;
+                    try {
+                            userContinue = false;
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            Console.WriteLine("Thank you for using Buisiwe's Queue App!");
+                    }
+                    catch (ArithmeticException ex) //Catches all errors relating to arithmetic operations
+                        {
+
+                            Console.WriteLine(ex.Message);
+                        }
+                    catch(Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                    
                     break;
                 default:
                     Console.Clear();
                     break;
                 
             }
-        }
-            //Queue<string> names = new Queue<string>();
-
-
-    //string user;
-    
-     
-   // userdetail= user.
-//names.Enqueue(userdetail);
-
-
-//Queue<int> myQueue = new Queue<int>();
-
- //foreach (string value in userdetail)
-       // {
-                    //names.(value);
-                    //Console.WriteLine(names);
-                    // return value;
-                    //Console.WriteLine(value);
-                    
-       // }
-   // Console.WriteLine("The elements in the queue are:" + names.Count());
-    //Console.WriteLine("The element Busi is contain in the queue:" + names.Contains("Busi"));
-    
-
-
-
-   
-
-            
-            //Contain method checks if user exist in a queue it will return true or false
-           // Console.WriteLine("The element Ngozo is contain in the queue:" + names.Contains("Ngozo@user.com"));
-            //Console.ForegroundColor = ConsoleColor.DarkYellow;
-            //Console.WriteLine("The element Peter is contain in the queue:" + names.Contains("Peter@user.com"));
-
-            //Clear method clears elements in the queue
-           // names.Clear();
-            ////looping in list of names in a Queue after clearing the elements in the queue
-            //foreach (string name in names)
-            //{
-                //Console.WriteLine(name);
-            //}
-           // Console.WriteLine("The elements in the queue are been cleared");
-            //Console.WriteLine("The elements in the queue is now:" + names.Count);
-        
+         }
        }
     }
 }
